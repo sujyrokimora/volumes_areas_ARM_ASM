@@ -1,0 +1,2 @@
+gcc -g menu.s
+./a.out
