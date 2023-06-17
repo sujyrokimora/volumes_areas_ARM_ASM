@@ -44,7 +44,7 @@ calc_ret_area:
     LDR R1, =buffer        
     BL scanf
     LDR R1, =buffer
-    VLDR D0, [R1]
+    VLDR D1, [R1]
     BL ret_area  @ ..
 @ ..........................side 2
     LDR  R0, =str_menu_in_ret
@@ -54,11 +54,11 @@ calc_ret_area:
     LDR R1, =buffer        
     BL scanf
     LDR R1, =buffer
-    VLDR D1, [R1]
+    VLDR D2, [R1]
     BL ret_area
 @ .......................
-    VMOV R2, R3, D0
-    VMOV R4, R5, D1
+    VMOV R2, R3, D1
+    VMOV R2, R3, D2
     LDR R0, =str_out_float_ret
     BL  printf
 @ ....................
@@ -67,7 +67,7 @@ calc_ret_area:
 ret_area: @......
     VMOV S2, S0
     VMOV S3, S1
-    VMUL.F64 D0, D0, D1
+    VMUL.F64 D3, D2, D1
     BX LR
 
 
