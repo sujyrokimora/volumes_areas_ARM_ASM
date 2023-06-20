@@ -53,6 +53,9 @@ op_area:
   CMP R0, #'5'
   BLEQ calc_trap_area
 
+  CMP R0, #'6'
+  BLEQ calc_los_area
+
   CMP R0, #'0' 
   BEQ main
   B op_return
@@ -79,7 +82,7 @@ str_in_s: .asciz "%s" @ Data format
 @ Main menu
 menu_main:      .asciz "\n--------MENU-----------\n 1) Cálculo de áreas\n 2) Cálculo de volumes\n 0) Sair\n-----------------------\n Introduza a sua opção: "
 @ Area menu
-menu_area:      .asciz "\n--CÁLCULO DE ÁREAS-----\n 1) Quadrado\n 2) Retangulo\n 3) Circulo\n 4) Triangulo\n 5) Trapezio\n 6) ...\n 0) Sair\n-----------------------\n Introduza a sua opção: "
+menu_area:      .asciz "\n--CÁLCULO DE ÁREAS-----\n 1) Quadrado\n 2) Retangulo\n 3) Circulo\n 4) Triangulo\n 5) Trapezio\n 6) Losango\n 0) Sair\n-----------------------\n Introduza a sua opção: "
 @ Volume menu
 menu_volume:    .asciz "\n-CÁLCULO DE VOLUMES----\n 1) Cubo\n 2) Cilindro\n 3) Cone\n 4) Esfera\n 5) Pirâmide\n 6) ...\n 0) Sair\n-----------------------\n Introduza a sua opção: " 
 

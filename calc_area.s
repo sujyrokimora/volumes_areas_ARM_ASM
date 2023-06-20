@@ -183,8 +183,43 @@ trap_area: @......
     VMUL.F64 D8, D8, D4
     VMUL.F64 D8, D8, D5
     BX LR
+@Losango
+calc_los_area:
+    MOV R5, LR
+@..........................side 1
+    LDR  R0, =str_menu_in_trap
+    BL   printf     
+@.....................
+    LDR R0, =str_in_float   
+    LDR R1, =buffer        
+    BL scanf
+    LDR R1, =buffer
+    VLDR D3, [R1]
+   // BL ret_area  @ ..
+@ ..........................side 2
+    LDR  R0, =str_menu_in_trap
+    BL   printf 
+@......................
+    LDR R0, =str_in_float   
+    LDR R1, =buffer        
+    BL scanf
+    LDR R1, =buffer
+    VLDR D2, [R1]
+    BL los_area
+@ .......................
+    VMOV R2, R3, D8
+    LDR R0, =str_out_float_ret
+    BL  printf
+@ ....................
+    B _exit_area_calc
 
-
+los_area: @......
+    LDR R1, =dois
+    VLDR S4, [R1]
+    VCVT.F64.F32 D5, S4
+    VADD.F64 D8, D2, D3
+    VMUL.F64 D8, D8, D5
+    BX LR
 _exit_area_calc: @ .....
     MOV LR, R5
     BX LR
@@ -209,6 +244,9 @@ str_out_float_tri:  .asciz "A área do triangulo é: %lf [cm2]\n"
 //Trapezio
 str_menu_in_trap:    .asciz "\nIntroduza uma das bases do Trapezio: "  @ .....
 str_menu_in_trap_h:    .asciz "\nIntroduza a altura do Trapezio: "  @ .....
+str_out_float_trap:  .asciz "A área do Trapezio é: %lf [cm2]\n"
+//Los
+str_menu_in_los:    .asciz "\nIntroduza uma das diagnais do losango: "  @ .....
 str_out_float_trap:  .asciz "A área do Trapezio é: %lf [cm2]\n"
 
 .align 4
